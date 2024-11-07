@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+
+struct Distance {
+    int feet;
+    int inches;
+};
+
+
+void displayDistance(struct Distance d) {
+    printf("Distance: %d feet, %d inches\n", d.feet, d.inches);
+}
+
+
+int main() {
+    struct Distance d;
+
+    
+    printf("Enter distance:\n");
+    printf("Feet: ");
+    scanf("%d", &d.feet);
+    printf("Inches: ");
+    scanf("%d", &d.inches);
+    printf("Enter distance:\n");
+    printf("Feet: ");
+    scanf("%d", &d.feet);
+    printf("Inches: ");
+    scanf("%d", &d.inches);
+
+    
+    if (d.inches >= 12) {
+        d.feet += d.inches / 12;
+        d.inches = d.inches % 12;
+    }
+
+   
+    displayDistance(d);
+
+    return 0;
+}
