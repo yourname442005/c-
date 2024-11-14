@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+const int NUM_SECTIONS = 2;
+const int NUM_STUDENTS = 5;
+const int NUM_SUBJECTS = 5;
+
+int main() {
+    // Array to store marks for each section, student, and subject
+    float marks[NUM_SECTIONS][NUM_STUDENTS][NUM_SUBJECTS];
+    float sectionAvg[NUM_SECTIONS] = {0}; // To store average marks of each section
+
+    // Input marks for each section, student, and subject
+    for (int sec = 0; sec < NUM_SECTIONS; sec++) {
+        cout << "\nEnter marks for Section " << sec + 1 << ":\n";
+        for (int stu = 0; stu < NUM_STUDENTS; stu++) {
+            cout << "  Student " << stu + 1 << ":\n";
+            float totalMarks = 0; // Total marks for each student
+            for (int sub = 0; sub < NUM_SUBJECTS; sub++) {
+                cout << "    Subject " << sub + 1 << ": ";
+                cin >> marks[sec][stu][sub];
+                totalMarks += marks[sec][stu][sub];
+            }
+            // Calculate and display average marks for each student
+            float studentAvg = totalMarks / NUM_SUBJECTS;
+            cout << "    Average marks for Student " << stu + 1 << ": " 
+                 << fixed << setprecision(2) << studentAvg << endl;
+
+            // Add student's total marks to section's total
+            sectionAvg[sec] += totalMarks;
+        }
+    }
+
+    // Calculate and display average marks for each section
+    cout << "\n--- Section Averages ---\n";
+    for (int sec = 0; sec < NUM_SECTIONS; sec++) {
+        float avg = sectionAvg[sec] / (NUM_STUDENTS * NUM_SUBJECTS);
+        cout << "Section " << sec + 1 << " Average Marks: " 
+             << fixed << setprecision(2) << avg << endl;
+    }
+
+    return 0;
+}
