@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    // Function to get personal details
+    void getPersonDetails() {
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter age: ";
+        cin >> age;
+    }
+
+    // Function to display personal details
+    void displayPersonDetails() {
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+    }
+};
+
+// Derived class (Level 1)
+class Student : public Person {
+protected:
+    string studentID;
+    string course;
+
+public:
+    // Function to get student details
+    void getStudentDetails() {
+        cout << "Enter student ID: ";
+        cin >> studentID;
+        cout << "Enter course: ";
+        cin >> course;
+    }
+
+    // Function to display student details
+    void displayStudentDetails() {
+        displayPersonDetails();
+        cout << "Student ID: " << studentID << endl;
+        cout << "Course: " << course << endl;
+    }
+};
+
+// Derived class (Level 2)
+class RegisteredStudent : public Student {
+private:
+    string registrationNumber;
+    string registrationDate;
+
+public:
+    // Function to get registration details
+    void getRegistrationDetails() {
+        cout << "Enter registration number: ";
+        cin >> registrationNumber;
+        cout << "Enter registration date (DD/MM/YYYY): ";
+        cin >> registrationDate;
+    }
+
+    // Function to display registration details
+    void displayRegistrationDetails() {
+        displayStudentDetails();
+        cout << "Registration Number: " << registrationNumber << endl;
+        cout << "Registration Date: " << registrationDate << endl;
+    }
+};
+
+// Main function
+int main() {
+    RegisteredStudent regStudent;
+
+    // Collect details
+    cout << "Enter the details of the student:\n";
+    regStudent.getPersonDetails();
+    regStudent.getStudentDetails();
+    regStudent.getRegistrationDetails();
+
+    // Display details
+    cout << "\n--- Student Registration Details ---\n";
+    regStudent.displayRegistrationDetails();
+
+    return 0;
+}
