@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main() {
+    int numSubjects, i;
+    float score, total = 0.0, average;
+    char grade;
+
+    printf("Enter the number of subjects: ");
+    scanf("%d", &numSubjects);
+
+    for (i = 1; i <= numSubjects; i++) {
+        printf("Enter the score for subject %d: ", i);
+        scanf("%f", &score);
+
+        // Check for valid score
+        if (score < 0 || score > 100) {
+            printf("Invalid score entered. Please enter a score between 0 and 100.\n");
+            i--; // Repeat this subject entry
+            continue;
+        }
+
+        total += score; // Add score to total
+    }
+
+    average = total / numSubjects; // Calculate average score
+
+    // Determine grade based on average
+    if (average >= 90) {
+        grade = 'A';
+    } else if (average >= 80) {
+        grade = 'B';
+    } else if (average >= 70) {
+        grade = 'C';
+    } else if (average >= 60) {
+        grade = 'D';
+    } else {
+        grade = 'F';
+    }
+
+    // Display results
+    printf("\n--- Semester Marking Report ---\n");
+    printf("Total Score: %.2f\n", total);
+    printf("Average Score: %.2f\n", average);
+    printf("Grade: %c\n", grade);
+
+    return 0;
+}
